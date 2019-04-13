@@ -112,16 +112,16 @@ function animate() {
 
 function greet(msg, duration) {
    const greet = document.getElementById("greetings");
-   const cursorChar = "|";
-   let cursor = cursorChar;
+   const cursorChar = "█";
+   let cursor = "";
 
    setInterval(function() {
       cursor = cursorChar;
 
       setTimeout(function() {
          cursor = cursorChar.substring(0,0);
-      }, 500);
-   }, 1000);
+      }, 400);
+   }, 800);
 
    for (let i = 0; i <= msg.length; i++) {
       setTimeout(function() {
@@ -132,7 +132,7 @@ function greet(msg, duration) {
    setTimeout(function() {
       setInterval(function() {
          greet.textContent = msg + cursor;
-      }, 500);
+      }, 100);
 
       const svgTarget1 = document.getElementById("background");
 

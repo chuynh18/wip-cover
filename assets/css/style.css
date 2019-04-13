@@ -2,15 +2,13 @@ svg {
    width: 100%;
 }
 
-#greetings, clipPath {
-   font-family: 'Lato', sans-serif;
-}
-
 #greetings {
+   font-family: 'Courier New', Courier, monospace;
    font-size: 18pt;
 }
 
 clipPath {
+   font-family: 'Lato', sans-serif;
    font-size: 36pt;
 }
 
