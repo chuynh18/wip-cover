@@ -11,7 +11,6 @@ const adjectives = [
    "Android"
 ];
 
-
 // big picture:  this exists so that we are less likely to see repeats
 // this function makes a local copy of the array adjectives
 // then it mutates the internal copy, randomly splicing one item out
@@ -51,11 +50,6 @@ const pickRandomFromList = (function(list) {
    }
 })(adjectives);
 
-// useful HTML elements and a color array
-const svgTarget = document.getElementById("background2");
-const adj = document.getElementById("span1");
-const beziers = svgTarget.getElementsByTagName("path");
-
 // returns random hex color codes from #000000 to #ffffff as strings
 function generateRandomColor() {
    let output = "#";
@@ -74,6 +68,11 @@ function generateRandomColor() {
 
 // this animates the 2nd line (the line that says "{Adjective} Developer")
 function animate() {
+   // useful HTML elements and a color array
+   const svgTarget = document.getElementById("background2");
+   const adj = document.getElementById("span1");
+   const beziers = svgTarget.getElementsByTagName("path");
+
    // color schemes
    const colors = ["#000000", "#990000", "#000099"];
    const androidColors = ["#000000", "#a4c639"];
