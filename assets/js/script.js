@@ -69,9 +69,9 @@ function generateRandomColor() {
 // this animates the 2nd line (the line that says "{Adjective} Developer")
 function animate() {
    // useful HTML elements and a color array
-   const svgTarget = document.getElementById("background2");
+   const svgTarget2 = document.getElementById("background2");
    const adj = document.getElementById("span1");
-   const beziers = svgTarget.getElementsByTagName("path");
+   const beziers = svgTarget2.getElementsByTagName("path");
 
    // color schemes
    const colors = ["#000000", "#990000", "#000099"];
@@ -82,8 +82,8 @@ function animate() {
    const adjective = pickRandomFromList();
    adj.textContent = adjective;
 
-   svgTarget.classList.remove("invisible");
-   svgTarget.classList.add("pulse");
+   svgTarget2.classList.remove("invisible");
+   svgTarget2.classList.add("pulse");
 
    // situational formatting depending on the adjective
    for (let i = 0; i < beziers.length; i++) {
@@ -101,8 +101,8 @@ function animate() {
    }
 
    setTimeout(function() {
-      svgTarget.classList.remove("pulse");
-      svgTarget.classList.add("invisible");
+      svgTarget2.classList.remove("pulse");
+      svgTarget2.classList.add("invisible");
    }, 3950);
 
    setTimeout(function() {
@@ -110,5 +110,39 @@ function animate() {
    }, 4000);
 }
 
-// delay 2nd line animation start by 2 seconds
-setTimeout(animate, 2000);
+function greet(msg, duration) {
+   const greet = document.getElementById("greetings");
+   const cursorChar = "|";
+   let cursor = cursorChar;
+
+   setInterval(function() {
+      cursor = cursorChar;
+
+      setTimeout(function() {
+         cursor = cursorChar.substring(0,0);
+      }, 500);
+   }, 1000);
+
+   for (let i = 0; i <= msg.length; i++) {
+      setTimeout(function() {
+         greet.textContent = msg.substring(0, i) + cursor;
+      }, i * Math.floor(duration / msg.length));
+   }
+
+   setTimeout(function() {
+      setInterval(function() {
+         greet.textContent = msg + cursor;
+      }, 500);
+
+      const svgTarget1 = document.getElementById("background");
+
+      svgTarget1.classList.remove("invisible");
+      svgTarget1.classList.add("my-name");
+
+   }, duration);
+
+   // delay 2nd line animation start
+   setTimeout(animate, duration + 1200);
+}
+
+greet("Hello <company name>, I'm...", 2000);

@@ -2,12 +2,19 @@ svg {
    width: 100%;
 }
 
-clipPath {
+#greetings, clipPath {
    font-family: 'Lato', sans-serif;
+}
+
+#greetings {
+   font-size: 18pt;
+}
+
+clipPath {
    font-size: 36pt;
 }
 
-#background path {
+.my-name path {
    animation: transition-in 1.7s cubic-bezier(0.2, 0.1, 0.1, 0.8);
    transform-origin: 50% 50%;
    transform-box: fill-box;
