@@ -1,0 +1,46 @@
+svg {
+   width: 100%;
+}
+
+clipPath {
+   font-family: 'Lato', sans-serif;
+   font-size: 36pt;
+}
+
+#background path {
+   animation: transition-in 1.7s cubic-bezier(0.5, 0.1, 0.1, 0.8);
+   transform-origin: 50% 50%;
+   transform-box: fill-box;
+}
+
+@keyframes transition-in {
+   0% {
+      -webkit-transform: scale(0) rotate(180deg);
+      transform: scale(0) rotate(180deg);
+   }
+
+   100% {
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+   }
+}
+
+#background2 path {
+   animation: pulse 4s cubic-bezier(0.5, 0.1, 0.1, 0.8) infinite;
+   transform-origin: 50% 50%;
+   transform-box: fill-box;
+}
+
+@keyframes pulse {
+   0%,
+   100% {
+      -webkit-transform: scale(0) rotate(180deg);
+      transform: scale(0) rotate(180deg);
+   }
+
+   35%,
+   65% {
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+   }
+}
