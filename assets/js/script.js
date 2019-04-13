@@ -1,5 +1,6 @@
 "use strict";
 
+// i flatter myself
 const adjectives = [
    "Curious",
    "Open-minded",
@@ -34,4 +35,5 @@ function animate() {
    }, 4000);
 }
 
-animate();
+// delay 2nd line animation by 2 seconds
+setTimeout(animate, 2000);
