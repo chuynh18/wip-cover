@@ -1,15 +1,56 @@
 "use strict";
 
-// i flatter myself
-const adjectives = [
-   "Curious",
-   "Creative",
-   "Versatile",
-   "Team-oriented",
-   "JavaScript",
-   "Java",
-   "Android"
-];
+// config object at the global level, so that I only
+// have to touch one place in code for common changes
+const config = {
+   // config options for the typing part of the intro animation
+   typingAnimation: {
+      // how fast cursor blinks (in hello <company name>)
+      CURSOR_BLINK_SPEED: 300,
+
+      // defines the cursor aka insertion point character
+      CURSOR_CHAR: "█",
+
+      // iterations of for loop before typing begins
+      // correlates to the time the cursor blinks before typing animation begins
+      NUM_ITERATIONS_BEFORE_TYPING: 12,
+
+      // duration of typing animation
+      // the followup animation only starts when typing ends
+      DURATION: 2000,
+
+      // message to type
+      MESSAGE: "Hello <company name>, I'm..."
+   },
+
+   // config options pertaining to the <adjective> developer line 
+   developerLine: {
+      // time delay between displaying my name and beginning cyclic animation of developer line
+      DELAY_BETWEEN_NAME_AND_DEVELOPER_LINE: 1200,
+
+      // default color scheme when an adjective does not provide its own color scheme
+      DEFAULT_COLOR_SCHEME: ["#000000", "#990000", "#000099"],
+
+      // how long each cycle takes
+      // MUST also edit animation duration for .pulse class in style.css!
+      CYCLE_TIME: 4000
+   },
+
+   // array of objects containing adjectives to display before "developer"
+   // MUST contain "word" key; the value is a string
+   // optionally can contain "color" key.
+   // "color" key can be an array of strings corresponding to HTML color codes
+   // OR can be a function that returns an HTML color code as a string
+   adjectives: [
+      {word: "Curious"},
+      {word: "Creative", color: generateRandomColor},
+      {word: "Versatile"},
+      {word: "Team-oriented"},
+      {word: "JavaScript", color: ["#000000", "#f7df1e"]},
+      {word: "Java", color: ["#f8981d", "#5382a1"]},
+      {word: "Android", color: ["#000000", "#a4c639"]}
+   ]
+};
 
 // big picture:  this exists so that we are less likely to see repeats
 // this function makes a local copy of the array adjectives
@@ -48,7 +89,7 @@ const pickRandomFromList = (function(list) {
       // return a randomly selected item spliced out from internalList
       return internalList.splice(randomIndex, 1)[0];
    }
-})(adjectives);
+})(config.adjectives);
 
 // returns random hex color codes from #000000 to #ffffff as strings
 function generateRandomColor() {
@@ -70,79 +111,92 @@ function generateRandomColor() {
 function animate() {
    // useful HTML elements and a color array
    const svgTarget2 = document.getElementById("background2");
-   const adj = document.getElementById("span1");
+   const adj = document.getElementById("adjective");
    const beziers = svgTarget2.getElementsByTagName("path");
 
    // color schemes
-   const colors = ["#000000", "#990000", "#000099"];
-   const androidColors = ["#000000", "#a4c639"];
-   const javaColors = ["#f8981d", "#5382a1"];
-   const jsColors = ["#000000", "#f7df1e"];
+   const colors = config.developerLine.DEFAULT_COLOR_SCHEME;
 
    const adjective = pickRandomFromList();
-   adj.textContent = adjective;
+   adj.textContent = adjective.word;
 
    svgTarget2.classList.remove("invisible");
    svgTarget2.classList.add("pulse");
 
    // situational formatting depending on the adjective
    for (let i = 0; i < beziers.length; i++) {
-      if (adjective === "Creative") {
-         beziers[i].style.fill = generateRandomColor();
-      } else if (adjective === "Android") {
-         beziers[i].style.fill = androidColors[Math.floor(Math.random() * androidColors.length)];
-      } else if (adjective === "Java") {
-         beziers[i].style.fill = javaColors[Math.floor(Math.random() * javaColors.length)];
-      } else if (adjective === "JavaScript") {
-         beziers[i].style.fill = jsColors[Math.floor(Math.random() * jsColors.length)];
-      } else {
+      if (!adjective.color) {
          beziers[i].style.fill = colors[Math.floor(Math.random() * colors.length)];
+      } else if (typeof adjective.color === "function") {
+         beziers[i].style.fill = adjective.color();
+      } else {
+         beziers[i].style.fill = adjective.color[Math.floor(Math.random() * adjective.color.length)];
       }
    }
 
    setTimeout(function() {
       svgTarget2.classList.remove("pulse");
       svgTarget2.classList.add("invisible");
-   }, 3950);
+   }, config.developerLine.CYCLE_TIME - 50);
 
    setTimeout(function() {
       animate(); // recursion
-   }, 4000);
+   }, config.developerLine.CYCLE_TIME);
 }
 
-function greet(msg, duration) {
+// this "master" function gets called and coordinates ALL the intro animations
+function greet() {
+   const msg = config.typingAnimation.MESSAGE;
+   const duration = config.typingAnimation.DURATION;
+   const blinkSpeed = config.typingAnimation.CURSOR_BLINK_SPEED;
+   const numIterationsBeforeTyping = config.typingAnimation.NUM_ITERATIONS_BEFORE_TYPING;
+   const cursorChar = config.typingAnimation.CURSOR_CHAR;
+   const developerLineDelay = config.developerLine.DELAY_BETWEEN_NAME_AND_DEVELOPER_LINE;
    const greet = document.getElementById("greetings");
-   const cursorChar = "█";
    let cursor = "";
 
+   // responsible for the blinking insertion point
    setInterval(function() {
       cursor = cursorChar;
 
       setTimeout(function() {
          cursor = cursorChar.substring(0,0);
-      }, 400);
-   }, 800);
+      }, blinkSpeed);
+   }, 2 * blinkSpeed);
 
-   for (let i = 0; i <= msg.length; i++) {
+   // displays blinking insertion point
+   for (let i = 0; i < numIterationsBeforeTyping; i++) {
       setTimeout(function() {
-         greet.textContent = msg.substring(0, i) + cursor;
-      }, i * Math.floor(duration / msg.length));
+         greet.textContent = cursor;
+      }, 100 * i);
    }
 
+   // plays typing animation that shows string from config.typingAnimation.MESSAGE
    setTimeout(function() {
+      for (let i = 0; i <= msg.length; i++) {
+         setTimeout(function() {
+            greet.textContent = msg.substring(0, i) + cursor;
+         }, i * Math.floor(duration / msg.length));
+      }
+   }, 100 * numIterationsBeforeTyping);
+
+   setTimeout(function() {
+      // ensures cursor continues to blink after typing animation concludes
       setInterval(function() {
          greet.textContent = msg + cursor;
       }, 100);
 
+      // displays my name
       const svgTarget1 = document.getElementById("background");
 
       svgTarget1.classList.remove("invisible");
       svgTarget1.classList.add("my-name");
 
-   }, duration);
+   }, duration + 100 * numIterationsBeforeTyping);
 
-   // delay 2nd line animation start
-   setTimeout(animate, duration + 1200);
+   // starts "<adjective> developer" animation
+   setTimeout(animate, duration + (100 * numIterationsBeforeTyping) + developerLineDelay);
 }
 
-greet("Hello <company name>, I'm...", 2000);
+// kick it all off!
+greet();

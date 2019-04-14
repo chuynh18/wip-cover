@@ -5,6 +5,7 @@ svg {
 #greetings {
    font-family: 'Courier New', Courier, monospace;
    font-size: 18pt;
+   padding-top: 5px;
 }
 
 clipPath {
