@@ -75,12 +75,10 @@ const pickRandomFromList = (function(list) {
 
          // randomIndex was 0 because it was generated when internalList was empty
          // this means we need to regenerate it
-         randomIndex = Math.floor(Math.random() * internalList.length);
-
-         // this prevents repeats from happening when rebuilding the list
-         while (internalList[randomIndex] === lastItem) {
+         do {
             randomIndex = Math.floor(Math.random() * internalList.length);
          }
+         while (internalList[randomIndex] === lastItem);
       } else if (internalList.length === 1) {
          // store last item drawn from the list
          lastItem = internalList[0];
@@ -114,7 +112,7 @@ function animate() {
    const adj = document.getElementById("adjective");
    const beziers = svgTarget2.getElementsByTagName("path");
 
-   // color schemes
+   // color scheme
    const colors = config.developerLine.DEFAULT_COLOR_SCHEME;
 
    const adjective = pickRandomFromList();
