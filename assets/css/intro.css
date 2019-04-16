@@ -15,12 +15,6 @@ svg {
    line-height: 1em;
 }
 
-@media only screen and (max-width: 900px) {
-   #greetings {
-      font-size: 24pt;
-   }
-}
-
 clipPath {
    font-size: 36pt;
 }

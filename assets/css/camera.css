@@ -13,7 +13,7 @@
 }
 
 /* drop shadows only for desktops (mouseover isn't really a thing on mobile) */
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1024px) {
    #camera-active-layer:hover {
       filter: drop-shadow(0px 0px 7px lightblue);
       margin: auto;

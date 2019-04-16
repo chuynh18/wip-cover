@@ -14,17 +14,15 @@ img::selection {
    background: none;
  }
 
-/* all content divs should be width 70%, but their containers should be 100% */
+/*content divs should be width 70%, but their containers should be 100% */
 header, section {
    width: 70%;
    margin: auto;
    padding: 1.5em 0;
 }
 
-@media only screen and (max-width: 900px) {
-   header {
-      width: 90%;
-   }
+header {
+   width: 80%;
 }
 
 .section-title {
