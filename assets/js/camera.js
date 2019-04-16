@@ -12,17 +12,26 @@ const cameraConfig = {
 function positionThumbnailInCamera() {
    const thumbnailDiv = document.getElementById("camera2");
    thumbnailDiv.style.top = "224px";
-   thumbnailDiv.style.left = `${0.7 * window.innerWidth / 2 - 204}px`
+
+   thumbnailDiv.style.left =
+   (0.7 * window.innerWidth / 2 - 204 > 110)
+   ? `${0.7 * window.innerWidth / 2 - 204}px` : "110px";
 }
 
 // when the camera is clicked, play shutter sound and display next photo
 function takePhoto() {
    const cameraScreen = document.getElementById("camera-image");
+   const cameraBody = document.getElementById("d7500");
 
    cameraConfig.sound.play();
    cameraScreen.setAttribute("src", `assets/img/blank-small.jpg`);
 
    setTimeout(function() {
+      cameraBody.classList.add("camera-flash");
+   }, 400);
+
+   setTimeout(function() {
+      cameraBody.classList.remove("camera-flash");
       cameraScreen.setAttribute("src", `assets/img/${cameraConfig.currentPhoto}s.jpg`);
       
       (cameraConfig.currentPhoto === cameraConfig.numPhotos - 1) ? cameraConfig.currentPhoto = 0 : cameraConfig.currentPhoto++;
