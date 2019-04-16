@@ -4,7 +4,7 @@
 const cameraConfig = {
    // current number of photos to display in the camera
    numPhotos: 20,
-   currentPhoto: 0,
+   currentPhoto: -1,
    sound: new Audio("assets/other/shutter.webm"),
    currentlyAnimating: false,
    cameraClicked: false,
@@ -27,6 +27,9 @@ function takePhoto() {
       return;
    }
 
+   // advance photo counter
+   (cameraConfig.currentPhoto === cameraConfig.numPhotos - 1) ? cameraConfig.currentPhoto = 0 : cameraConfig.currentPhoto++;
+
    cameraConfig.cameraClicked = true;
    cameraConfig.currentlyAnimating = true;
    const cameraScreen = document.getElementById("camera-image");
@@ -46,8 +49,6 @@ function takePhoto() {
       cameraBody.classList.remove("camera-flash");
       cameraScreen.setAttribute("src", `assets/img/${cameraConfig.currentPhoto}s.jpg`);
       
-      (cameraConfig.currentPhoto === cameraConfig.numPhotos - 1) ? cameraConfig.currentPhoto = 0 : cameraConfig.currentPhoto++;
-      
       cameraConfig.currentlyAnimating = false;
    }, 500);
 }
@@ -58,7 +59,7 @@ function showLargerImage() {
    if (!cameraConfig.cameraClicked) {
       takePhoto();
    } else {
-      document.getElementById("large-photo").setAttribute("src", `assets/img/${cameraConfig.currentPhoto - 1}l.jpg`);
+      document.getElementById("large-photo").setAttribute("src", `assets/img/${cameraConfig.currentPhoto}l.jpg`);
       cameraConfig.photoModal.style.display = "block";
    }
 }
