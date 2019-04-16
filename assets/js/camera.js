@@ -35,6 +35,8 @@ function takePhoto() {
    cameraConfig.sound.play();
    cameraScreen.setAttribute("src", `assets/img/blank-small.jpg`);
 
+   document.getElementById("large-photo").setAttribute("src", "/assets/img/loading.png");
+
    setTimeout(function() {
       cameraBody.classList.add("camera-flash");
    }, 400);
@@ -68,13 +70,12 @@ function hideModal() {
 // the JavaScript below is executed!
 
 // modal event listeners
+document.getElementById("close").addEventListener("click", hideModal);
 document.addEventListener("click", function(event) {
    if (event.target === cameraConfig.photoModal) {
       hideModal();
    }
 });
-
-document.getElementById("close").addEventListener("click", hideModal);
 
 // attach camera event listeners
 document.getElementById("camera1").addEventListener("click", takePhoto);
