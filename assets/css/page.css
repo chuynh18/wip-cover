@@ -21,6 +21,12 @@ header, section {
    padding: 1.5em 0;
 }
 
+@media only screen and (max-width: 900px) {
+   header {
+      width: 90%;
+   }
+}
+
 .section-title {
    font-size: 48pt;
    font-weight: bold;
