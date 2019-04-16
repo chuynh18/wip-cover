@@ -3,7 +3,7 @@
 // camera configuration object
 const cameraConfig = {
    // current number of photos to display in the camera
-   numPhotos: 20,
+   numPhotos: 21,
    currentPhoto: -1,
    sound: new Audio("assets/other/shutter.webm"),
    currentlyAnimating: false,
@@ -17,8 +17,8 @@ function positionThumbnailInCamera() {
    thumbnailDiv.style.top = "224px";
 
    thumbnailDiv.style.left =
-   (0.7 * window.innerWidth / 2 - 204 > 110)
-   ? `${0.7 * window.innerWidth / 2 - 204}px` : "110px";
+   (0.7 * window.innerWidth / 2 - 204 > 121)
+   ? `${0.7 * window.innerWidth / 2 - 204}px` : "121px";
 }
 
 // when the camera is clicked, play shutter sound and display next photo
@@ -36,9 +36,9 @@ function takePhoto() {
    const cameraBody = document.getElementById("d7500");
 
    cameraConfig.sound.play();
-   cameraScreen.setAttribute("src", `assets/img/blank-small.jpg`);
+   cameraScreen.setAttribute("src", "assets/img/blank-small.jpg");
 
-   document.getElementById("large-photo").setAttribute("src", "/assets/img/loading.png");
+   document.getElementById("large-photo").setAttribute("src", "assets/img/loading.png");
 
    setTimeout(function() {
       cameraBody.classList.add("camera-flash");
@@ -79,7 +79,7 @@ document.addEventListener("click", function(event) {
 });
 
 // attach camera event listeners
-document.getElementById("camera1").addEventListener("click", takePhoto);
+document.getElementById("camera-active-layer").addEventListener("click", takePhoto);
 document.getElementById("camera2").addEventListener("click", showLargerImage);
 
 // pixel push camera image into position

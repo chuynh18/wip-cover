@@ -37,3 +37,11 @@ header, section {
 .text-light {
    color: #f0f0f0;
 }
+
+.no-select {
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+}
