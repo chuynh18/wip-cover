@@ -6,8 +6,10 @@
 
 #camera1 {
    position: relative;
+   user-select: none;
 }
 
 #camera2 {
    position: absolute;
+   user-select: none;
 }

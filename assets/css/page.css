@@ -5,6 +5,15 @@ html, body {
    padding: 0;
 }
 
+img {
+   user-select: none;
+   pointer-events: none;
+}
+
+img::selection {
+   background: none;
+ }
+
 /* all content divs should be width 70%, but their containers should be 100% */
 header, section {
    width: 70%;
