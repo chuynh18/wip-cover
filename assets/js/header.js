@@ -160,7 +160,7 @@ function setHeaderHeight() {
    const headerContainer = document.getElementById("header-container");
    let height;
 
-   if (window.innerWidth > 800) {
+   if (window.innerWidth > 1024) {
       height = window.innerHeight - 95 > 550 ? window.innerHeight - 95 : 550;
    } else {
       height = window.innerHeight - 500 > 550 ? window.innerHeight - 500 : 550;

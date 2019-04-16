@@ -192,6 +192,6 @@ function fixSVGOnMobile() {
 appendSVGPaths("background");
 appendSVGPaths("background2");
 
-if (window.innerWidth < 800) {
+if (window.innerWidth < 1024) {
    fixSVGOnMobile();
 }
