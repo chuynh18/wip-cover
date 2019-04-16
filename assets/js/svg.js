@@ -186,7 +186,7 @@ function appendSVGPaths(target) {
 // fix for mobile screen widths
 function fixSVGOnMobile() {
    const svg = document.getElementById("adjective-developer");
-   svg.setAttribute("viewBox", "0 0 600 60");
+   svg.setAttribute("viewBox", "0 0 550 60");
 }
 
 appendSVGPaths("background");
