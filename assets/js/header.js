@@ -5,7 +5,7 @@
 
 // config object at the global level, so that I only
 // have to touch one place in code for common changes
-const config = {
+const headerConfig = {
    // config options for the typing part of the intro animation
    typingAnimation: {
       // how fast cursor blinks (in hello <company name>)
@@ -98,7 +98,7 @@ const pickRandomFromList = (function(list) {
       // return a randomly selected item spliced out from internalList
       return internalList.splice(randomIndex, 1)[0];
    }
-})(config.adjectives);
+})(headerConfig.adjectives);
 
 // returns random hex color codes from #000000 to #ffffff as strings
 function generateRandomColor() {
@@ -122,11 +122,11 @@ function animate() {
    const svgTarget2 = document.getElementById("background2");
    const adj = document.getElementById("adjective");
    const beziers = svgTarget2.getElementsByTagName("path");
-   const possibleAnimations = config.developerLine.ANIMATIONS;
+   const possibleAnimations = headerConfig.developerLine.ANIMATIONS;
    const animation = possibleAnimations[Math.floor(Math.random() * possibleAnimations.length)];
 
    // color scheme
-   const colors = config.developerLine.DEFAULT_COLOR_SCHEME;
+   const colors = headerConfig.developerLine.DEFAULT_COLOR_SCHEME;
 
    const adjective = pickRandomFromList();
    adj.textContent = adjective.word;
@@ -148,11 +148,11 @@ function animate() {
    setTimeout(function() {
       svgTarget2.classList.remove(animation);
       svgTarget2.classList.add("invisible");
-   }, config.developerLine.CYCLE_TIME - 50);
+   }, headerConfig.developerLine.CYCLE_TIME - 50);
 
    setTimeout(function() {
       animate(); // recursion
-   }, config.developerLine.CYCLE_TIME);
+   }, headerConfig.developerLine.CYCLE_TIME);
 }
 
 // center intro approximately vertically in screen - yay pixel pushing
@@ -164,12 +164,12 @@ function setHeaderHeight() {
 
 // this "master" function gets called and coordinates ALL the intro animations
 function greet() {
-   const msg = config.typingAnimation.MESSAGE;
-   const duration = config.typingAnimation.DURATION;
-   const blinkSpeed = config.typingAnimation.CURSOR_BLINK_SPEED;
-   const numIterationsBeforeTyping = config.typingAnimation.NUM_ITERATIONS_BEFORE_TYPING;
-   const cursorChar = config.typingAnimation.CURSOR_CHAR;
-   const developerLineDelay = config.developerLine.DELAY_BETWEEN_NAME_AND_DEVELOPER_LINE;
+   const msg = headerConfig.typingAnimation.MESSAGE;
+   const duration = headerConfig.typingAnimation.DURATION;
+   const blinkSpeed = headerConfig.typingAnimation.CURSOR_BLINK_SPEED;
+   const numIterationsBeforeTyping = headerConfig.typingAnimation.NUM_ITERATIONS_BEFORE_TYPING;
+   const cursorChar = headerConfig.typingAnimation.CURSOR_CHAR;
+   const developerLineDelay = headerConfig.developerLine.DELAY_BETWEEN_NAME_AND_DEVELOPER_LINE;
    const greet = document.getElementById("greetings");
    let cursor = "";
 
@@ -180,10 +180,10 @@ function greet() {
    window.addEventListener("resize", setHeaderHeight);
 
    // set my name
-   document.getElementById("my-name").textContent = config.name;
+   document.getElementById("my-name").textContent = headerConfig.name;
 
    // set the noun
-   document.getElementById("noun").textContent = config.noun;
+   document.getElementById("noun").textContent = headerConfig.noun;
 
    // responsible for the blinking insertion point
    setInterval(function() {

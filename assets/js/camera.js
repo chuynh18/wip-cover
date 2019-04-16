@@ -3,7 +3,7 @@
 // camera configuration object
 const cameraConfig = {
    // current number of photos to display in the camera
-   numPhotos: 9,
+   numPhotos: 15,
    currentPhoto: 0,
    sound: new Audio("assets/other/shutter.webm")
 };
