@@ -158,7 +158,14 @@ function animate() {
 // center intro approximately vertically in screen - yay pixel pushing
 function setHeaderHeight() {
    const headerContainer = document.getElementById("header-container");
-   const height = window.innerHeight - 95 > 550 ? window.innerHeight - 95 : 550;
+   let height;
+
+   if (window.innerWidth > 800) {
+      height = window.innerHeight - 95 > 550 ? window.innerHeight - 95 : 550;
+   } else {
+      height = window.innerHeight - 500 > 550 ? window.innerHeight - 500 : 550;
+   }
+
    headerContainer.style.height = `${height}px`;
 }
 
