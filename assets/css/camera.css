@@ -1,0 +1,13 @@
+#camera-container {
+   padding-top: 1em;
+   position: relative;
+   text-align: center;
+}
+
+#camera1 {
+   position: absolute;
+}
+
+#camera2 {
+   position: relative;
+}

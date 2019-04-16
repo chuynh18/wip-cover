@@ -1,9 +1,10 @@
 "use strict";
 
-// this inserts the paths into the SVG
+// this script inserts the paths into the SVG
 // rationale is I have two SVGs that have exactly the same paths
 // rather than copying and pasting the SVG paths into the HTML,
 // I am inserting them via JavaScript
+
 function appendSVGPaths(target) {
    const paths = [
       "m -22.219001,-29.659296 c -5,6.42858 -18.214286,47.5 -14.285714,53.57143 3.928571,6.07143 20.714285,15.71429 31.7857138,15.71429 11.0714281,0 34.2857142,-13.92857 37.8571432,-26.07143 3.571428,-12.1428601 6.071428,-23.57143 0.357143,-33.57143 -5.714286,-10 -33.21428619,-17.14286 -37.5000005,-16.42857 -4.2857143,0.71429 -18.2142855,6.78571 -18.2142855,6.78571 z",

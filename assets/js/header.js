@@ -1,5 +1,8 @@
 "use strict";
 
+// this script pertains to the header
+// it handles all the animations and some of the content
+
 // config object at the global level, so that I only
 // have to touch one place in code for common changes
 const config = {
@@ -33,8 +36,13 @@ const config = {
 
       // how long each cycle takes
       // MUST also edit animation duration for .pulse class in style.css!
-      CYCLE_TIME: 4000
+      CYCLE_TIME: 4000,
+
+      // list of possible CSS animation class names
+      ANIMATIONS: ["pulse", "pulse2"]
    },
+
+   name: "Christopher Huynh",
 
    // array of objects containing adjectives to display before "developer"
    // MUST contain "word" key; the value is a string
@@ -49,7 +57,10 @@ const config = {
       {word: "JavaScript", color: ["#000000", "#f7df1e"]},
       {word: "Java", color: ["#f8981d", "#5382a1"]},
       {word: "Android", color: ["#000000", "#a4c639"]}
-   ]
+   ],
+
+   // the noun that comes after the adjectives
+   noun: "developer"
 };
 
 // big picture:  this exists so that we are less likely to see repeats
@@ -111,6 +122,8 @@ function animate() {
    const svgTarget2 = document.getElementById("background2");
    const adj = document.getElementById("adjective");
    const beziers = svgTarget2.getElementsByTagName("path");
+   const possibleAnimations = config.developerLine.ANIMATIONS;
+   const animation = possibleAnimations[Math.floor(Math.random() * possibleAnimations.length)];
 
    // color scheme
    const colors = config.developerLine.DEFAULT_COLOR_SCHEME;
@@ -119,7 +132,7 @@ function animate() {
    adj.textContent = adjective.word;
 
    svgTarget2.classList.remove("invisible");
-   svgTarget2.classList.add("pulse");
+   svgTarget2.classList.add(animation);
 
    // situational formatting depending on the adjective
    for (let i = 0; i < beziers.length; i++) {
@@ -133,13 +146,20 @@ function animate() {
    }
 
    setTimeout(function() {
-      svgTarget2.classList.remove("pulse");
+      svgTarget2.classList.remove(animation);
       svgTarget2.classList.add("invisible");
    }, config.developerLine.CYCLE_TIME - 50);
 
    setTimeout(function() {
       animate(); // recursion
    }, config.developerLine.CYCLE_TIME);
+}
+
+// center intro approximately vertically in screen
+function setHeaderHeight() {
+   const headerContainer = document.getElementById("header-container");
+   const height = window.innerHeight;
+   headerContainer.style.height = `${height - 95}px`;
 }
 
 // this "master" function gets called and coordinates ALL the intro animations
@@ -152,6 +172,18 @@ function greet() {
    const developerLineDelay = config.developerLine.DELAY_BETWEEN_NAME_AND_DEVELOPER_LINE;
    const greet = document.getElementById("greetings");
    let cursor = "";
+
+   // make header container tall enough to push the rest of the page down
+   setHeaderHeight();
+
+   // add event listener to ensure the header is always appropriately sized
+   window.addEventListener("resize", setHeaderHeight);
+
+   // set my name
+   document.getElementById("my-name").textContent = config.name;
+
+   // set the noun
+   document.getElementById("noun").textContent = config.noun;
 
    // responsible for the blinking insertion point
    setInterval(function() {

@@ -1,0 +1,30 @@
+html, body {
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-size: 28pt;
+   margin: 0;
+   padding: 0;
+}
+
+/* all content divs should be width 70%, but their containers should be 100% */
+header, section {
+   width: 70%;
+   margin: auto;
+   padding: 1.5em 0;
+}
+
+.section-title {
+   font-size: 48pt;
+   font-weight: bold;
+}
+
+.background-black {
+   background-color: #000000;
+}
+
+.background-light {
+   background-color: #f0f0f0;
+}
+
+.text-light {
+   color: #f0f0f0;
+}

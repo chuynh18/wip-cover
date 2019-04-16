@@ -6,33 +6,74 @@
    <meta charset="utf-8" />
    <title>Christopher Huynh</title>
    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
-   <link rel="stylesheet" href="assets/css/style.css" />
-   <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet" />
+   <link rel="stylesheet" href="assets/css/page.css" />
+   <link rel="stylesheet" href="assets/css/intro.css" />
+   <link rel="stylesheet" href="assets/css/aboutme.css" />
+   <link rel="stylesheet" href="assets/css/camera.css" />
 </head>
 
-<body translate="no">
+<body>
+   <div id="content">
+      <!-- intro animation; relevant scripts:  header.js & svg.js -->
+      <div class="background-light" id="header-container">
+         <header>
+            <!-- "Hello <company name>, I'm..." -->
+            <div id="greetings"></div>
 
-   <div id="greetings"></div>
+            <!-- this shows my name -->
+            <svg viewBox="0 0 500 60">
 
-   <svg viewBox="0 0 800 70">
+               <clipPath id="textClip">
+                  <text id="my-name" y="50"></text>
+               </clipPath>
 
-      <clipPath id="textClip">
-         <text y="50">Christopher Huynh</text>
-      </clipPath>
+               <g id="background" class="invisible" clip-path="url(#textClip)"></g>
+            </svg>
 
-      <g id="background" class="invisible" clip-path="url(#textClip)"></g>
-   </svg>
-   <svg viewBox="0 0 800 70">
+            <!-- "<adjective> developer" -->
+            <svg viewBox="0 0 500 60">
 
-         <clipPath id="textClip2">
-            <text y="50"><tspan id="adjective"></tspan> <tspan id="noun">developer</tspan></text>
-         </clipPath>
-   
-         <g id="background2" class="invisible" clip-path="url(#textClip2)"></g>
-      </svg>
+               <clipPath id="textClip2">
+                  <text y="50">
+                     <tspan id="adjective"></tspan>
+                     <tspan id="noun"></tspan>
+                  </text>
+               </clipPath>
 
-      <script src="assets/js/svg.js"></script>
-      <script src="assets/js/script.js"></script>
+               <g id="background2" class="invisible" clip-path="url(#textClip2)"></g>
+            </svg>
+         </header>
+      </div>
+
+      <!-- short introductory paragraph -->
+      <div id="about-me">
+         <section>
+            <div class="section-title">About</div>
+            <div>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+         </section>
+      </div>
+
+      <!-- hobby: photography -->
+      <div id="photography" class="background-black text-light">
+         <section>
+            <div class="section-title">Photography</div>
+            <div id="camera-container">
+               <div class="camera-layer" id="camera1">
+                  <img src="assets/img/osprey-small.jpg" alt="Osprey test image" />
+               </div>
+               <div class="camera-layer" id="camera2">
+                  <img src="assets/img/d7500.png" alt="Nikon D7500 rear" />
+               </div>
+            </div>
+         </section>
+      </div>
+
+   </div>
+   <script src="assets/js/svg.js"></script>
+   <script src="assets/js/header.js"></script>
+   <script src="assets/js/camera.js"></script>
 </body>
 
 </html>

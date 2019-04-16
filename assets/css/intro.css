@@ -1,0 +1,87 @@
+header {
+   position: relative;
+   transform: translateY(50%);
+   display: block;
+}
+
+svg {
+   text-align: center;
+}
+
+#greetings {
+   font-family: 'Courier New', Courier, monospace;
+   font-size: 32pt;
+   padding-top: 5px;
+   line-height: 1em;
+}
+
+clipPath {
+   font-size: 36pt;
+}
+
+.invisible path {
+   -webkit-transform: scale(0) rotate(90deg);
+   transform: scale(0) rotate(90deg);
+}
+
+.my-name path {
+   animation: transition-in 1.7s cubic-bezier(0.2, 0.1, 0.1, 0.8);
+   transform-origin: 50% 50%;
+   transform-box: fill-box;
+}
+
+@keyframes transition-in {
+   0% {
+      -webkit-transform: scale(0) rotate(90deg);
+      transform: scale(0) rotate(90deg);
+   }
+
+   100% {
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+   }
+}
+
+.pulse path {
+   animation: pulse 4s cubic-bezier(0.15, 0.05, 0.25, 0.75);
+   transform-origin: 50% 50%;
+   transform-box: fill-box;
+}
+
+@keyframes pulse {
+   0%,
+   100% {
+      -webkit-transform: scale(0) rotate(90deg);
+      transform: scale(0) rotate(90deg);
+      opacity: 0.5;
+   }
+
+   20%,
+   80% {
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+   }
+}
+
+.pulse2 path {
+   animation: pulse2 4s cubic-bezier(0.15, 0.05, 0.25, 0.75);
+   transform-origin: 50% 50%;
+   transform-box: fill-box;
+}
+
+@keyframes pulse2 {
+   0%,
+   100% {
+      -webkit-transform: scale(0) rotate(-40deg);
+      transform: scale(0) rotate(-40deg);
+      opacity: 0.5;
+   }
+
+   20%,
+   80% {
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+   }
+}
