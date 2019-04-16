@@ -16,17 +16,13 @@ img::selection {
 
 /*content divs should be width 70%, but their containers should be 100% */
 header, section {
-   width: 70%;
+   width: 90%;
    margin: auto;
    padding: 1.5em 0;
 }
 
-header {
-   width: 90%;
-}
-
 @media only screen and (min-width: 1024px) {
-   header {
+   header, section {
       width: 70%;
    }
 }

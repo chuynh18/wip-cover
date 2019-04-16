@@ -16,9 +16,15 @@ function positionThumbnailInCamera() {
    const thumbnailDiv = document.getElementById("camera2");
    thumbnailDiv.style.top = "224px";
 
-   thumbnailDiv.style.left =
-   (0.7 * window.innerWidth / 2 - 204 > 121)
-   ? `${0.7 * window.innerWidth / 2 - 204}px` : "121px";
+   if (window.innerWidth >= 1024) {
+      thumbnailDiv.style.left =
+      (0.7 * window.innerWidth / 2 - 197 > 121)
+      ? `${0.7 * window.innerWidth / 2 - 197}px` : "121px";
+   } else {
+      thumbnailDiv.style.left =
+      (0.7 * window.innerWidth / 2 - 96 > 241)
+      ? `${0.7 * window.innerWidth / 2 - 96}px` : "241px";
+   }
 }
 
 // when the camera is clicked, play shutter sound and display next photo
