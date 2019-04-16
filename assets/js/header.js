@@ -155,11 +155,11 @@ function animate() {
    }, config.developerLine.CYCLE_TIME);
 }
 
-// center intro approximately vertically in screen
+// center intro approximately vertically in screen - yay pixel pushing
 function setHeaderHeight() {
    const headerContainer = document.getElementById("header-container");
-   const height = window.innerHeight;
-   headerContainer.style.height = `${height - 95}px`;
+   const height = window.innerHeight - 95 > 550 ? window.innerHeight - 95 : 550;
+   headerContainer.style.height = `${height}px`;
 }
 
 // this "master" function gets called and coordinates ALL the intro animations

@@ -5,9 +5,9 @@
 }
 
 #camera1 {
-   position: absolute;
+   position: relative;
 }
 
 #camera2 {
-   position: relative;
+   position: absolute;
 }
