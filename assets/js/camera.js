@@ -16,14 +16,15 @@ function positionThumbnailInCamera() {
    const thumbnailDiv = document.getElementById("camera2");
    thumbnailDiv.style.top = "224px";
 
+   // so.  much.  pixel.  pushing.
    if (window.innerWidth >= 1024) {
       thumbnailDiv.style.left =
-      (0.7 * window.innerWidth / 2 - 197 > 121)
-      ? `${0.7 * window.innerWidth / 2 - 197}px` : "121px";
+      (0.7 * window.innerWidth / 2 - 203 > 121) ?
+      `${0.7 * window.innerWidth / 2 - 203}px` : "121px";
    } else {
       thumbnailDiv.style.left =
-      (0.7 * window.innerWidth / 2 - 96 > 241)
-      ? `${0.7 * window.innerWidth / 2 - 96}px` : "241px";
+      (0.9 * window.innerWidth / 2 - 200 > 122) ?
+      `${0.9 * window.innerWidth / 2 - 200}px` : "122px";
    }
 }
 
