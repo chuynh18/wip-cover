@@ -43,7 +43,7 @@ const headerConfig = {
 
       // scrollY position below which the animation will stop
       // and above which the animation will restart
-      HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY: 600,
+      HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY: 500,
 
       lastKnownYPosition: 0,
 
@@ -126,7 +126,7 @@ function generateRandomColor() {
 
 // this animates the 2nd line (the line that says "{Adjective} Developer")
 function animate() {
-   if (window.scrollY < 600) {
+   if (window.scrollY < headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY) {
       // useful HTML elements and a color array
       const svgTarget2 = document.getElementById("background2");
       const adj = document.getElementById("adjective");
