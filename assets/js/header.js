@@ -39,7 +39,15 @@ const headerConfig = {
       CYCLE_TIME: 4000,
 
       // list of possible CSS animation class names
-      ANIMATIONS: ["pulse", "pulse2"]
+      ANIMATIONS: ["pulse", "pulse2"],
+
+      // scrollY position below which the animation will stop
+      // and above which the animation will restart
+      HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY: 600,
+
+      lastKnownYPosition: 0,
+
+      isAnimating: true
    },
 
    name: "Christopher Huynh",
@@ -118,40 +126,49 @@ function generateRandomColor() {
 
 // this animates the 2nd line (the line that says "{Adjective} Developer")
 function animate() {
-   // useful HTML elements and a color array
-   const svgTarget2 = document.getElementById("background2");
-   const adj = document.getElementById("adjective");
-   const beziers = svgTarget2.getElementsByTagName("path");
-   const possibleAnimations = headerConfig.developerLine.ANIMATIONS;
-   const animation = possibleAnimations[Math.floor(Math.random() * possibleAnimations.length)];
+   if (window.scrollY < 600) {
+      // useful HTML elements and a color array
+      const svgTarget2 = document.getElementById("background2");
+      const adj = document.getElementById("adjective");
+      const beziers = svgTarget2.getElementsByTagName("path");
+      const possibleAnimations = headerConfig.developerLine.ANIMATIONS;
+      const animation = possibleAnimations[Math.floor(Math.random() * possibleAnimations.length)];
 
-   // color scheme
-   const colors = headerConfig.developerLine.DEFAULT_COLOR_SCHEME;
+      headerConfig.developerLine.isAnimating = true;
 
-   const adjective = pickRandomFromList();
-   adj.textContent = adjective.word;
+      // color scheme
+      const colors = headerConfig.developerLine.DEFAULT_COLOR_SCHEME;
 
-   svgTarget2.classList.remove("invisible");
-   svgTarget2.classList.add(animation);
+      const adjective = pickRandomFromList();
+      adj.textContent = adjective.word;
 
-   // situational formatting depending on the adjective
-   for (let i = 0; i < beziers.length; i++) {
-      if (!adjective.color) {
-         beziers[i].style.fill = colors[Math.floor(Math.random() * colors.length)];
-      } else if (typeof adjective.color === "function") {
-         beziers[i].style.fill = adjective.color();
-      } else {
-         beziers[i].style.fill = adjective.color[Math.floor(Math.random() * adjective.color.length)];
+      svgTarget2.classList.remove("invisible");
+      svgTarget2.classList.add(animation);
+
+      // situational formatting depending on the adjective
+      for (let i = 0; i < beziers.length; i++) {
+         if (!adjective.color) {
+            beziers[i].style.fill = colors[Math.floor(Math.random() * colors.length)];
+         } else if (typeof adjective.color === "function") {
+            beziers[i].style.fill = adjective.color();
+         } else {
+            beziers[i].style.fill = adjective.color[Math.floor(Math.random() * adjective.color.length)];
+         }
       }
+
+      setTimeout(function() {
+         svgTarget2.classList.remove(animation);
+         svgTarget2.classList.add("invisible");
+      }, headerConfig.developerLine.CYCLE_TIME - 50);
    }
 
    setTimeout(function() {
-      svgTarget2.classList.remove(animation);
-      svgTarget2.classList.add("invisible");
-   }, headerConfig.developerLine.CYCLE_TIME - 50);
-
-   setTimeout(function() {
-      animate(); // recursion
+      if (window.scrollY < 600) {
+         animate(); // recursion
+      } else {
+         headerConfig.developerLine.isAnimating = false;
+      }
+      
    }, headerConfig.developerLine.CYCLE_TIME);
 }
 
@@ -237,3 +254,14 @@ function greet() {
 
 // kick it all off!
 greet();
+
+// restart animation if viewer scrolls up
+window.addEventListener("scroll", function() {
+   if (headerConfig.developerLine.lastKnownYPosition > headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY
+      && window.scrollY <= headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY
+      && !headerConfig.developerLine.isAnimating) {
+         animate();
+   }
+
+   headerConfig.developerLine.lastKnownYPosition = window.scrollY;
+});
