@@ -58,25 +58,34 @@ const headerConfig = {
    // "color" key can be an array of strings corresponding to HTML color codes
    // OR can be a function that returns an HTML color code as a string
    adjectives: [
-      {word: "Curious"},
-      {word: "Creative", color: generateRandomColor},
-      {word: "Versatile"},
-      {word: "Team-oriented"},
-      {word: "JavaScript", color: ["#000000", "#f7df1e"]},
-      {word: "Java", color: ["#f8981d", "#5382a1"]},
-      {word: "Android", color: ["#000000", "#a4c639"]}
+      { word: "Curious" },
+      { word: "Creative", color: generateRandomColor },
+      { word: "Versatile" },
+      { word: "Team-oriented" },
+      { word: "JavaScript", color: ["#000000", "#f7df1e"] },
+      { word: "Java", color: ["#f8981d", "#5382a1"] },
+      { word: "Android", color: ["#000000", "#a4c639"] }
    ],
 
    // the noun that comes after the adjectives
    noun: "developer"
 };
 
+// other misc config options and global variables
+const otherConfig = {
+   goodbye: {
+      goodbyeDiv: document.getElementById("goodbye"),
+      goodbyeThanksDiv: document.getElementById("goodbye-thanks"),
+      goodbyeDisplayed: false
+   }
+}
+
 // big picture:  this exists so that we are less likely to see repeats
 // this function makes a local copy of the array adjectives
 // then it mutates the internal copy, randomly splicing one item out
 // and returning that randomly selected item
 // when the internal copy is empty, it re-copies the original array
-const pickRandomFromList = (function(list) {
+const pickRandomFromList = (function (list) {
    // internalList is a copy of the input list, which is the adjectives array
    const internalList = [...list];
 
@@ -84,13 +93,13 @@ const pickRandomFromList = (function(list) {
    //(to prevent it from being repeated)
    let lastItem = "";
 
-   return function() {
+   return function () {
       // generate a random number corresponding to an index of internalList
       let randomIndex = Math.floor(Math.random() * internalList.length);
 
       // if internalList becomes depleted, recreate it
       if (internalList.length === 0) {
-         list.forEach(item => {internalList.push(item)});
+         list.forEach(item => { internalList.push(item) });
 
          // randomIndex was 0 because it was generated when internalList was empty
          // this means we need to regenerate it
@@ -126,6 +135,7 @@ function generateRandomColor() {
 
 // this animates the 2nd line (the line that says "{Adjective} Developer")
 function animate() {
+   // only animate if the user hasn't scrolled too far down
    if (window.scrollY < headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY) {
       // useful HTML elements and a color array
       const svgTarget2 = document.getElementById("background2");
@@ -142,7 +152,7 @@ function animate() {
       const adjective = pickRandomFromList();
       adj.textContent = adjective.word;
 
-      svgTarget2.classList.remove("invisible");
+      svgTarget2.classList.remove("invisible-animation");
       svgTarget2.classList.add(animation);
 
       // situational formatting depending on the adjective
@@ -156,19 +166,19 @@ function animate() {
          }
       }
 
-      setTimeout(function() {
+      setTimeout(function () {
          svgTarget2.classList.remove(animation);
-         svgTarget2.classList.add("invisible");
+         svgTarget2.classList.add("invisible-animation");
       }, headerConfig.developerLine.CYCLE_TIME - 50);
    }
 
-   setTimeout(function() {
+   setTimeout(function () {
       if (window.scrollY < 600) {
          animate(); // recursion
       } else {
          headerConfig.developerLine.isAnimating = false;
       }
-      
+
    }, headerConfig.developerLine.CYCLE_TIME);
 }
 
@@ -210,40 +220,40 @@ function greet() {
    document.getElementById("noun").textContent = headerConfig.noun;
 
    // responsible for the blinking insertion point
-   setInterval(function() {
+   setInterval(function () {
       cursor = cursorChar;
 
-      setTimeout(function() {
-         cursor = cursorChar.substring(0,0);
+      setTimeout(function () {
+         cursor = cursorChar.substring(0, 0);
       }, blinkSpeed);
    }, 2 * blinkSpeed);
 
    // displays blinking insertion point
    for (let i = 0; i < numIterationsBeforeTyping; i++) {
-      setTimeout(function() {
+      setTimeout(function () {
          greet.textContent = cursor;
       }, 100 * i);
    }
 
    // plays typing animation that shows string from config.typingAnimation.MESSAGE
-   setTimeout(function() {
+   setTimeout(function () {
       for (let i = 0; i <= msg.length; i++) {
-         setTimeout(function() {
+         setTimeout(function () {
             greet.textContent = msg.substring(0, i) + cursor;
          }, i * Math.floor(duration / msg.length));
       }
    }, 100 * numIterationsBeforeTyping);
 
-   setTimeout(function() {
+   setTimeout(function () {
       // ensures cursor continues to blink after typing animation concludes
-      setInterval(function() {
+      setInterval(function () {
          greet.textContent = msg + cursor;
       }, 100);
 
       // displays my name
       const svgTarget1 = document.getElementById("background");
 
-      svgTarget1.classList.remove("invisible");
+      svgTarget1.classList.remove("invisible-animation");
       svgTarget1.classList.add("my-name");
 
    }, duration + 100 * numIterationsBeforeTyping);
@@ -255,12 +265,24 @@ function greet() {
 // kick it all off!
 greet();
 
-// restart animation if viewer scrolls up
-window.addEventListener("scroll", function() {
+// this scroll listener does multiple things, mainly so I don't attach more than one scroll listener
+window.addEventListener("scroll", function () {
+   // restart animation if viewer scrolls up to the point that the animated words may be visible again
    if (headerConfig.developerLine.lastKnownYPosition > headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY
       && window.scrollY <= headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY
       && !headerConfig.developerLine.isAnimating) {
-         animate();
+      animate();
+   }
+
+   // animate goodbye text if user scrolls to near bottom of page
+   const bottomScrollPosition = window.scrollY + window.innerHeight;
+   const coordsTopOfGoodbyeDiv = otherConfig.goodbye.goodbyeDiv.offsetTop;
+
+   if (!otherConfig.goodbye.goodbyeDisplayed &&
+      bottomScrollPosition > coordsTopOfGoodbyeDiv + 0.7 * otherConfig.goodbye.goodbyeDiv.clientHeight) {
+      otherConfig.goodbye.goodbyeDisplayed = true;
+      otherConfig.goodbye.goodbyeThanksDiv.classList.remove("invisible");
+      otherConfig.goodbye.goodbyeThanksDiv.classList.add("goodbye");
    }
 
    headerConfig.developerLine.lastKnownYPosition = window.scrollY;

@@ -19,7 +19,7 @@ clipPath {
    font-size: 36pt;
 }
 
-.invisible path {
+.invisible-animation path {
    -webkit-transform: scale(0) rotate(90deg);
    transform: scale(0) rotate(90deg);
 }

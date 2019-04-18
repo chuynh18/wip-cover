@@ -34,6 +34,10 @@ function takePhoto() {
       return;
    }
 
+   if (!cameraConfig.cameraClicked) {
+      document.getElementById("camera2").classList.remove("gone");
+   }
+
    // advance photo counter
    (cameraConfig.currentPhoto === cameraConfig.numPhotos - 1) ? cameraConfig.currentPhoto = 0 : cameraConfig.currentPhoto++;
 
@@ -63,12 +67,8 @@ function takePhoto() {
 // when the camera rear display is clicked, show larger image if present
 // otherwise, behave as if the camera was clicked
 function showLargerImage() {
-   if (!cameraConfig.cameraClicked) {
-      takePhoto();
-   } else {
-      document.getElementById("large-photo").setAttribute("src", `assets/img/${cameraConfig.currentPhoto}l.jpg`);
-      cameraConfig.photoModal.style.display = "block";
-   }
+   document.getElementById("large-photo").setAttribute("src", `assets/img/${cameraConfig.currentPhoto}l.jpg`);
+   cameraConfig.photoModal.style.display = "block";
 }
 
 function hideModal() {

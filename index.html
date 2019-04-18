@@ -6,10 +6,12 @@
    <meta charset="utf-8" />
    <title>Christopher Huynh</title>
    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
+   <!-- concatenate these into one CSS file when ready! -->
    <link rel="stylesheet" href="assets/css/page.css" />
    <link rel="stylesheet" href="assets/css/intro.css" />
    <link rel="stylesheet" href="assets/css/aboutme.css" />
    <link rel="stylesheet" href="assets/css/camera.css" />
+   <link rel="stylesheet" href="assets/css/goodbye.css" />
 </head>
 
 <body>
@@ -27,7 +29,7 @@
                   <text id="my-name" y="50"></text>
                </clipPath>
 
-               <g id="background" class="invisible" clip-path="url(#textClip)"></g>
+               <g id="background" class="invisible-animation" clip-path="url(#textClip)"></g>
             </svg>
 
             <!-- "<adjective> developer" -->
@@ -40,7 +42,7 @@
                   </text>
                </clipPath>
 
-               <g id="background2" class="invisible" clip-path="url(#textClip2)"></g>
+               <g id="background2" class="invisible-animation" clip-path="url(#textClip2)"></g>
             </svg>
          </header>
       </div>
@@ -50,8 +52,32 @@
          <section>
             <div class="section-title">About</div>
             <div>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+               Hello there! I'm a developer who is always itching to learn new things while still never losing sight of
+               the customer and the product. From a past life, I have several years of software testing and project
+               management experience, and have helped my teammates sustainably ship pretty large-scale features to
+               millions of customers worldwide.
             </div>
+         </section>
+      </div>
+
+      <!-- Code -->
+      <div class="background-black text-light">
+         <section>
+            <div class="section-title">Code</div>
+         </section>
+      </div>
+
+      <!-- Philosophy -->
+      <div>
+         <section>
+            <div class="section-title">Philosophy</div>
+         </section>
+      </div>
+
+      <!-- Experience -->
+      <div>
+         <section>
+            <div class="section-title">Experience</div>
          </section>
       </div>
 
@@ -59,16 +85,35 @@
       <div id="photography" class="background-black text-light">
          <section>
             <div class="section-title">Photography</div>
-            <div class="text-light">In my spare time, I'm a (very) amateur, mostly bird photographer.  I find it to be very relaxing, though punctuated by mad rushes to get the perfect shot.  But don't take my word for it.  Go on, give it a try!</div>
+            <div class="text-light">In my spare time, I'm a (very) amateur, mostly bird photographer. I find it to be
+               very relaxing, though punctuated by mad rushes to get the perfect shot. But don't take my word for it. Go
+               on, give it a try!</div>
             <div id="camera-container">
                <div class="camera-layer" id="camera1">
                   <div id="camera-active-layer">
                      <img id="d7500" src="assets/img/d7500.png" alt="Nikon D7500 rear" />
                   </div>
                </div>
-               <div class="camera-layer" id="camera2">
+               <div class="camera-layer gone" id="camera2">
                   <img id="camera-image" src="assets/img/blank-small.jpg" alt="Nikon D7500 rear display" />
                </div>
+            </div>
+         </section>
+      </div>
+
+      <!-- last remarks -->
+      <div>
+         <section>
+            So if you're looking for a developer who is always hungry to improve his craft, while never losing sight of
+            the product, the process... and most importantly of all: the customers and the team, please reach out. Let's
+            continue the conversation.
+         </section>
+      </div>
+
+      <div id="goodbye" class="background-light text-center">
+         <section>
+            <div id="goodbye-thanks" class="section-title invisible">
+               Thanks for visiting!
             </div>
          </section>
       </div>
@@ -81,10 +126,11 @@
             <span id="close">&times;</span>
             <img src="//:0" id="large-photo" alt="1200x800 photo" />
          </div>
-    
+
       </div>
 
    </div>
+   <!-- concatenate these into one JS file when ready! -->
    <script src="assets/js/svg.js"></script>
    <script src="assets/js/header.js"></script>
    <script src="assets/js/camera.js"></script>

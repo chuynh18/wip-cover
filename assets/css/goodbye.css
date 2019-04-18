@@ -1,0 +1,15 @@
+.goodbye {
+   animation: goodbye-animation 0.7s cubic-bezier(0.05, 0.15, 0.25, 0.75);
+}
+
+@keyframes goodbye-animation {
+   0% {
+      opacity: 0;
+      transform: translateY(-50px);
+   }
+
+   100% {
+      opacity: 1;
+      transform: translateY(0px);
+   }
+}
