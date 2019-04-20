@@ -3,7 +3,7 @@
 // camera configuration object
 const cameraConfig = {
    // current number of photos to display in the camera
-   numPhotos: 21,
+   numPhotos: 24,
    currentPhoto: -1,
    sound: new Audio("assets/other/shutter.webm"),
    currentlyAnimating: false,
@@ -19,10 +19,14 @@ function positionThumbnailInCamera() {
    // so.  much.  pixel.  pushing.
    if (window.innerWidth >= 1024) {
       thumbnailDiv.style.left =
-      (0.7 * window.innerWidth / 2 - 203 > 121) ?
-      `${0.7 * window.innerWidth / 2 - 203}px` : "121px";
+      // 0.6 comes from the width of the containing div
+      // everything else is empirically measured
+      (0.6 * window.innerWidth / 2 - 203 > 121) ?
+      `${0.6 * window.innerWidth / 2 - 203}px` : "121px";
    } else {
       thumbnailDiv.style.left =
+      // 0.9 comes from the width of the containing div
+      // everything else is empirically measured
       (0.9 * window.innerWidth / 2 - 200 > 122) ?
       `${0.9 * window.innerWidth / 2 - 200}px` : "122px";
    }
@@ -30,10 +34,12 @@ function positionThumbnailInCamera() {
 
 // when the camera is clicked, play shutter sound and display next photo
 function takePhoto() {
+   // if we're already taking a photo, don't do anything
    if (cameraConfig.currentlyAnimating) {
       return;
    }
 
+   // if this is the first time the camera has been clicked, show the rear LCD div
    if (!cameraConfig.cameraClicked) {
       document.getElementById("camera2").classList.remove("gone");
    }
@@ -41,20 +47,25 @@ function takePhoto() {
    // advance photo counter
    (cameraConfig.currentPhoto === cameraConfig.numPhotos - 1) ? cameraConfig.currentPhoto = 0 : cameraConfig.currentPhoto++;
 
+   // set cameraClicked and currentlyAnimating flags to true (cameraClicked is now true for the rest of the session)
    cameraConfig.cameraClicked = true;
    cameraConfig.currentlyAnimating = true;
    const cameraScreen = document.getElementById("camera-image");
    const cameraBody = document.getElementById("d7500");
 
+   // shutter sound!
    cameraConfig.sound.play();
    cameraScreen.setAttribute("src", "assets/img/blank-small.jpg");
 
+   // set modal to gray loading png to prevent major modal size changes on slower network connections
    document.getElementById("large-photo").setAttribute("src", "assets/img/loading.png");
 
+   // flash!
    setTimeout(function() {
       cameraBody.classList.add("camera-flash");
    }, 400);
 
+   // set the rear LCD image, remove the flash, flip currentlyAnimating flag back to false
    setTimeout(function() {
       document.getElementById("camera2").classList.add("camera-screen");
       cameraBody.classList.remove("camera-flash");

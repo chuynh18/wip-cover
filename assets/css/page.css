@@ -21,9 +21,13 @@ header, section {
    padding: 1.5em 0;
 }
 
+hr {
+   width: 30%;
+}
+
 @media only screen and (min-width: 1024px) {
    header, section {
-      width: 70%;
+      width: 60%;
    }
 }
 
@@ -40,12 +44,20 @@ header, section {
    background-color: #f0f0f0;
 }
 
+.background-gray {
+   background-color: #ddd;
+}
+
 .text-light {
    color: #f0f0f0;
 }
 
 .text-center {
    text-align: center;
+}
+
+.paragraph-spacing {
+   margin: 0.5em 0;
 }
 
 .no-select {

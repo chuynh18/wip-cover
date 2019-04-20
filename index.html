@@ -10,6 +10,7 @@
    <link rel="stylesheet" href="assets/css/page.css" />
    <link rel="stylesheet" href="assets/css/intro.css" />
    <link rel="stylesheet" href="assets/css/aboutme.css" />
+   <link rel="stylesheet" href="assets/css/game.css" />
    <link rel="stylesheet" href="assets/css/camera.css" />
    <link rel="stylesheet" href="assets/css/goodbye.css" />
 </head>
@@ -52,25 +53,203 @@
          <section>
             <div class="section-title">About</div>
             <div>
-               Hello there! I'm a developer who is always itching to learn new things while still never losing sight of
-               the customer and the product. From a past life, I have several years of software testing and project
-               management experience, and have helped my teammates sustainably ship pretty large-scale features to
-               millions of customers worldwide.
+               Hello there! I'm a developer who is always itching to learn new things while still never losing sight of the customer and the product.  From a past life, I have several years of software testing and project management experience, and have helped my teammates sustainably ship pretty large-scale features to millions of customers worldwide.
+            </div>
+         </section>
+      </div>
+
+      <!-- Philosophy -->
+      <div class="background-black text-light">
+         <section>
+            <div class="section-title">Philosophy</div>
+            <div class="paragraph-spacing">
+               Being a software engineer isn't just about code. Software is ultimately written by people, for people.  This informs my approach at multiple levels.
+            </div>
+            <hr>
+            <div class="paragraph-spacing">
+               First, I realize that it's all about the customer.  And the customer isn't just the end user; there are always multiple customers.  But let's start with the end user.  I always want to know that everything I'm doing is in some way contributing to value being delivered to the end user.  Is the code I'm writing delivering something the customer actually wants?  Is the meeting I'm in bringing clarity to the team, so we can deliver a coherent product?  Is the email I'm writing one that will help customer-facing teams better support our end users?
+            </div>
+            <hr>
+            <div class="paragraph-spacing">
+               Also, I recognize that we face an uncountable number of unknowns when writing software.  As much as we'd like to have certainty before making big decisions, that's just not reality.  It's an inherently uncertain business on multiple levels, and so I believe in being and doing Agile at a fundamental level.  We have to inspect and adapt, as developing great software is an empirical process.  We're going to learn a lot, and at times, we're going to have to pivot.  Also important to recognize is that we don't have to personally make a mistake to learn from it.  We can learn from each other on multiple levels:  we can learn from our immediate teammates, from sister teams within the organization, and from colleagues in the industry and even in other industries.  We just have to be humble enough to do so.
+            </div>
+            <hr>
+            <div class="paragraph-spacing">
+               Last, but not least, this is a team sport.  Just like in any team sport, we may have different roles on the team, and we may have major disagreements on how best to win, but we all need to perform at a high level and in concert with each other if we're going to bring home the prize.  I've worked with software developers, QA, game designers, artists, UX designers, and more...  so I know that no matter what you call yourself, you probably have strong opinions. So I've long since learned that people have opinions for a reason.  We may disagree.  Hell, we may hold mutually exclusive opinions.  But if you've cared enough to share your opinion with me, you must have a pretty important reason to do so, and I promise you two things: you have my full attention and I am listening to fully understand you.
             </div>
          </section>
       </div>
 
       <!-- Code -->
-      <div class="background-black text-light">
+      <div class="background-light">
          <section>
             <div class="section-title">Code</div>
-         </section>
-      </div>
+            <div class="paragraph-spacing">
+               I can't remember a time when I wasn't interested in computers.  My semi-formal education in programming was at the UC Berkeley Coding Bootcamp, where I was introduced to mostly web technologies (i.e. JavaScript, HTML, CSS, MySQL, MongoDB, and various JavaScript libraries).  However, I also have written in Java, and have dabbled in Golang, Python, and C.  I have also experimented with Linux as a desktop OS (year of the Linux desktop is still TBD!), and have a personal NAS running a CentOS-based distro.
+            </div>
+            <div class="paragraph-spacing">
+               To keep up with code, in addition to working on personal projects, I've been working my way through Robert Martin's <em>Clean Code</em> and the CLRS masterpiece, <em>Introduction to Algorithms</em>.  I'm also fairly active on Codewars, as I find there to be a great multitude of interesting problems, and I appreciate the ability to quickly try out other languages without having to deal with the hassle of setting up yet another development environment.
+            </div>
+            <div>
+               <a href="https://www.codewars.com/users/chuynh18/">
+                  <img src="https://www.codewars.com/users/chuynh18/badges/large" alt="codewars name and score" />
+               </a>
+            </div>
+            <div class="paragraph-spacing">
+               But sometimes, it's better to show than tell.  Give this a whirl!
+            </div>
+            <div class="text-center" id="turn"></div>
 
-      <!-- Philosophy -->
-      <div>
-         <section>
-            <div class="section-title">Philosophy</div>
+            <div id="game-container">
+               <div class="grid-container gone" id="board">
+                  <div class="grid-item game-column" id="0">
+                     <div class="game-cell game-column-0 game-row-5">
+                        <div class="circle-cell" id="0-5"></div>
+                     </div>
+                     <div class="game-cell game-column-0 game-row-4">
+                        <div class="circle-cell" id="0-4"></div>
+                     </div>
+                     <div class="game-cell game-column-0 game-row-3">
+                        <div class="circle-cell" id="0-3"></div>
+                     </div>
+                     <div class="game-cell game-column-0 game-row-2">
+                        <div class="circle-cell" id="0-2"></div>
+                     </div>
+                     <div class="game-cell game-column-0 game-row-1">
+                        <div class="circle-cell" id="0-1"></div>
+                     </div>
+                     <div class="game-cell game-column-0 game-row-0">
+                        <div class="circle-cell" id="0-0"></div>
+                     </div>
+                  </div>
+            
+                  <div class="grid-item game-column" id="1">
+                     <div class="game-cell game-column-1 game-row-5">
+                        <div class="circle-cell" id="1-5"></div>
+                     </div>
+                     <div class="game-cell game-column-1 game-row-4">
+                        <div class="circle-cell" id="1-4"></div>
+                     </div>
+                     <div class="game-cell game-column-1 game-row-3">
+                        <div class="circle-cell" id="1-3"></div>
+                     </div>
+                     <div class="game-cell game-column-1 game-row-2">
+                        <div class="circle-cell" id="1-2"></div>
+                     </div>
+                     <div class="game-cell game-column-1 game-row-1">
+                        <div class="circle-cell" id="1-1"></div>
+                     </div>
+                     <div class="game-cell game-column-1 game-row-0">
+                        <div class="circle-cell" id="1-0"></div>
+                     </div>
+                  </div>
+                     
+                  <div class="grid-item game-column" id="2">
+                     <div class="game-cell game-column-2 game-row-5">
+                        <div class="circle-cell" id="2-5"></div>
+                     </div>
+                     <div class="game-cell game-column-2 game-row-4">
+                        <div class="circle-cell" id="2-4"></div>
+                     </div>
+                     <div class="game-cell game-column-2 game-row-3">
+                        <div class="circle-cell" id="2-3"></div>
+                     </div>
+                     <div class="game-cell game-column-2 game-row-2">
+                        <div class="circle-cell" id="2-2"></div>
+                     </div>
+                     <div class="game-cell game-column-2 game-row-1">
+                        <div class="circle-cell" id="2-1"></div>
+                     </div>
+                     <div class="game-cell game-column-2 game-row-0">
+                        <div class="circle-cell" id="2-0"></div>
+                     </div>
+                  </div>
+                     
+                  <div class="grid-item game-column" id="3">
+                     <div class="game-cell game-column-3 game-row-5">
+                        <div class="circle-cell" id="3-5"></div>
+                     </div>
+                     <div class="game-cell game-column-3 game-row-4">
+                        <div class="circle-cell" id="3-4"></div>
+                     </div>
+                     <div class="game-cell game-column-3 game-row-3">
+                        <div class="circle-cell" id="3-3"></div>
+                     </div>
+                     <div class="game-cell game-column-3 game-row-2">
+                        <div class="circle-cell" id="3-2"></div>
+                     </div>
+                     <div class="game-cell game-column-3 game-row-1">
+                        <div class="circle-cell" id="3-1"></div>
+                     </div>
+                     <div class="game-cell game-column-3 game-row-0">
+                        <div class="circle-cell" id="3-0"></div>
+                     </div>
+                  </div>
+                     
+                  <div class="grid-item game-column" id="4">
+                     <div class="game-cell game-column-4 game-row-5">
+                        <div class="circle-cell" id="4-5"></div>
+                     </div>
+                     <div class="game-cell game-column-4 game-row-4">
+                        <div class="circle-cell" id="4-4"></div>
+                     </div>
+                     <div class="game-cell game-column-4 game-row-3">
+                        <div class="circle-cell" id="4-3"></div>
+                     </div>
+                     <div class="game-cell game-column-4 game-row-2">
+                        <div class="circle-cell" id="4-2"></div>
+                     </div>
+                     <div class="game-cell game-column-4 game-row-1">
+                        <div class="circle-cell" id="4-1"></div>
+                     </div>
+                     <div class="game-cell game-column-4 game-row-0">
+                        <div class="circle-cell" id="4-0"></div>
+                     </div>
+                  </div>
+                     
+                  <div class="grid-item game-column" id="5">
+                     <div class="game-cell game-column-5 game-row-5">
+                        <div class="circle-cell" id="5-5"></div>
+                     </div>
+                     <div class="game-cell game-column-5 game-row-4">
+                        <div class="circle-cell" id="5-4"></div>
+                     </div>
+                     <div class="game-cell game-column-5 game-row-3">
+                        <div class="circle-cell" id="5-3"></div>
+                     </div>
+                     <div class="game-cell game-column-5 game-row-2">
+                        <div class="circle-cell" id="5-2"></div>
+                     </div>
+                     <div class="game-cell game-column-5 game-row-1">
+                        <div class="circle-cell" id="5-1"></div>
+                     </div>
+                     <div class="game-cell game-column-5 game-row-0">
+                        <div class="circle-cell" id="5-0"></div>
+                     </div>
+                  </div>
+                     
+                  <div class="grid-item game-column" id="6">
+                     <div class="game-cell game-column-6 game-row-5">
+                        <div class="circle-cell" id="6-5"></div>
+                     </div>
+                     <div class="game-cell game-column-6 game-row-4">
+                        <div class="circle-cell" id="6-4"></div>
+                     </div>
+                     <div class="game-cell game-column-6 game-row-3">
+                        <div class="circle-cell" id="6-3"></div>
+                     </div>
+                     <div class="game-cell game-column-6 game-row-2">
+                        <div class="circle-cell" id="6-2"></div>
+                     </div>
+                     <div class="game-cell game-column-6 game-row-1">
+                        <div class="circle-cell" id="6-1"></div>
+                     </div>
+                     <div class="game-cell game-column-6 game-row-0">
+                        <div class="circle-cell" id="6-0"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </section>
       </div>
 
@@ -78,6 +257,17 @@
       <div>
          <section>
             <div class="section-title">Experience</div>
+            <div class="paragraph-spacing">
+               I have several years of experience each as a software tester and as a project manager.  Regardless of the team I'm on or the product I'm helping to deliver, I always try my best to help my team be the best version of themselves, so we can delight our customers and deliver something we'll be proud of.
+            </div>
+            <hr>
+            <div class="paragraph-spacing">
+               As a tester, my north star was the overall quality of the product.  I worked hand-in-hand with my software engineering teammates to provide comprehensive and timely testing.  This wasn't a relationship where software got "kicked over the fence" to testers; we got to a point where we were building functionality in neat increments, such I could test throughout the sprint.  Of course, ensuring the overall quality of the product is impossible if I only worked with software.  I also worked extensively other disciplines, most notably UX, whom I helped set up and run user testing labs.
+            </div>
+            <hr>
+            <div class="paragraph-spacing">
+               As a project manager, my overarching goal was to help my teammates sustainably ship products and features that would delight our customers.  Yes, these qualifiers are important.  We need to ship sustainably, because we're in it for the long haul, and we can't burn ourselves out.  And we need to delight our customers, or else we're not making the best thing we can possibly make.  One of the most memorable products I helped deliver was a replacement matchmaking system for League of Legends.
+            </div>
          </section>
       </div>
 
@@ -85,9 +275,7 @@
       <div id="photography" class="background-black text-light">
          <section>
             <div class="section-title">Photography</div>
-            <div class="text-light">In my spare time, I'm a (very) amateur, mostly bird photographer. I find it to be
-               very relaxing, though punctuated by mad rushes to get the perfect shot. But don't take my word for it. Go
-               on, give it a try!</div>
+            <div class="text-light">In my spare time, I'm a (very) amateur, mostly bird photographer. I find it to be very relaxing, though punctuated by mad rushes to get the perfect shot. But don't take my word for it. Go on, give it a try!</div>
             <div id="camera-container">
                <div class="camera-layer" id="camera1">
                   <div id="camera-active-layer">
@@ -104,9 +292,7 @@
       <!-- last remarks -->
       <div>
          <section>
-            So if you're looking for a developer who is always hungry to improve his craft, while never losing sight of
-            the product, the process... and most importantly of all: the customers and the team, please reach out. Let's
-            continue the conversation.
+            So if you're looking for a developer who is always hungry to improve his craft, while never losing sight of the product, the process... and most importantly of all: the customers and the team, please reach out. Let's continue the conversation.
          </section>
       </div>
 
@@ -122,7 +308,7 @@
       <div id="photo-modal">
 
          <!-- Modal content -->
-         <div class="modal-content background-light">
+         <div class="modal-content background-gray">
             <span id="close">&times;</span>
             <img src="//:0" id="large-photo" alt="1200x800 photo" />
          </div>
@@ -134,6 +320,8 @@
    <script src="assets/js/svg.js"></script>
    <script src="assets/js/header.js"></script>
    <script src="assets/js/camera.js"></script>
+   <script src="assets/js/featureToggle.js"></script>
+   <script src="assets/js/game.js"></script>
 </body>
 
 </html>

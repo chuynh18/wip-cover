@@ -1,0 +1,138 @@
+#game-container {
+   width: 98%;
+   position: relative;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+#turn button {
+   font-size: 18pt;
+}
+
+.grid-container {
+   width: 100%;
+   display: inline-grid;
+   grid-template-columns: auto auto auto auto auto auto auto;
+   background-color: #2196F3;
+   /* background-color: #f32121; */
+   padding: 10px;
+}
+
+.grid-item {
+   margin: auto;
+   width: 85%;
+}
+
+.game-cell {
+   height: 10.5vw;
+}
+
+.circle-cell {
+   border-radius: 8vw;
+   height: 95%;
+   width: 95%;
+   background-color: #222;
+}
+
+@media only screen and (min-width: 1024px) {
+   .game-cell {
+      height: 7vw;
+   }
+   
+   .circle-cell {
+      border-radius: 6vw;
+      height: 95%;
+      width: 95%;
+      background-color: #222;
+   }
+}
+
+.p1 {
+   background-color: #75a6d6;
+}
+
+.p2 {
+   background-color: #e07676;
+}
+
+.p1Win {
+   background-color: #0000ff;
+}
+
+.p2Win {
+   background-color: #ff0000;
+}
+
+.mouseover {
+   background-color: #ccc66c
+}
+
+.lastPlay0 {
+   animation-name: drop0;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+.lastPlay1 {
+   animation-name: drop1;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+.lastPlay2 {
+   animation-name: drop2;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+.lastPlay3 {
+   animation-name: drop3;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+.lastPlay4 {
+   animation-name: drop4;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+.lastPlay5 {
+   animation-name: drop5;
+   animation-duration: 250ms;
+   position: relative;
+}
+
+@keyframes drop0 {
+   0% {bottom:35vw}
+   100% {bottom:0vw}
+}
+
+@keyframes drop1 {
+   0% {bottom:28vw}
+   100% {bottom:0vw}
+}
+
+@keyframes drop2 {
+   0% {bottom:21vw}
+   100% {bottom:0vw}
+}
+
+@keyframes drop3 {
+   0% {bottom:14vw}
+   100% {bottom:0vw}
+}
+
+@keyframes drop4 {
+   0% {bottom:7vw}
+   100% {bottom:0vw}
+}
+
+@keyframes drop5 {
+   0% {bottom:3.5vw}
+   100% {bottom:0vw}
+}

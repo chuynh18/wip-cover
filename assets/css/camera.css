@@ -61,8 +61,7 @@
 .modal-content {
    margin: 3% auto;
    padding: 20px;
-   border: 1px solid #888;
-   width: 80%;
+   border: 1px solid #555;
    max-width: 1202px;
 }
 
@@ -74,7 +73,7 @@
 }
 
 #close {
-   color: #aaa;
+   color: #444;
    float: right;
    font-size: 28px;
    font-weight: bold;

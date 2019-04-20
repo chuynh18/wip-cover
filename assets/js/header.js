@@ -198,6 +198,7 @@ function setHeaderHeight() {
 
 // this "master" function gets called and coordinates ALL the intro animations
 function greet() {
+   // useful aliases and stuff
    const msg = headerConfig.typingAnimation.MESSAGE;
    const duration = headerConfig.typingAnimation.DURATION;
    const blinkSpeed = headerConfig.typingAnimation.CURSOR_BLINK_SPEED;
@@ -266,6 +267,10 @@ function greet() {
 greet();
 
 // this scroll listener does multiple things, mainly so I don't attach more than one scroll listener
+// it fires whenever the page is scrolled, so don't do anything expensive in here!
+// especially since a lot of people have smooth scrolling enabled one way or another.
+
+// try to keep the code that is guaranteed to run to be simple arithmetic or accessing values
 window.addEventListener("scroll", function () {
    // restart animation if viewer scrolls up to the point that the animated words may be visible again
    if (headerConfig.developerLine.lastKnownYPosition > headerConfig.developerLine.HEIGHT_THRESHOLD_TO_PAUSE_OR_PLAY
@@ -276,10 +281,9 @@ window.addEventListener("scroll", function () {
 
    // animate goodbye text if user scrolls to near bottom of page
    const bottomScrollPosition = window.scrollY + window.innerHeight;
-   const coordsTopOfGoodbyeDiv = otherConfig.goodbye.goodbyeDiv.offsetTop;
 
    if (!otherConfig.goodbye.goodbyeDisplayed &&
-      bottomScrollPosition > coordsTopOfGoodbyeDiv + 0.7 * otherConfig.goodbye.goodbyeDiv.clientHeight) {
+      bottomScrollPosition > otherConfig.goodbye.goodbyeDiv.offsetTop + 0.7 * otherConfig.goodbye.goodbyeDiv.clientHeight) {
       otherConfig.goodbye.goodbyeDisplayed = true;
       otherConfig.goodbye.goodbyeThanksDiv.classList.remove("invisible");
       otherConfig.goodbye.goodbyeThanksDiv.classList.add("goodbye");
