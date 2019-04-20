@@ -394,7 +394,6 @@ const playSound = function(sound) {
 
 // renders the page according to game state (player turn, tied game, player won, etc.)
 const renderGame = function() {
-    var html = document.getElementsByTagName("html")[0];
     var board = document.getElementById("board");
     var turnArea = document.getElementById("turn");
 
@@ -465,7 +464,6 @@ const renderGame = function() {
     }
     
     if (turnObj.turn === 1) {
-        html.style.backgroundColor = "#778899";
         board.style.backgroundColor = "#2196F3";
 
         if (turnObj.moveList.length > 0) {
@@ -498,7 +496,6 @@ const renderGame = function() {
             }
         }
     } else if (turnObj.turn === 2) {
-        html.style.backgroundColor = "#aa8484";
         board.style.backgroundColor = "#742525";
 
         setTimeout(function() {
@@ -530,7 +527,6 @@ const renderGame = function() {
     
     if (turnObj.winner === 1) {
         turnArea.textContent = "Player 1 wins";
-        html.style.backgroundColor = "#778899";
         board.style.backgroundColor = "#2196F3";
 
         if (featureToggle.debug.mlg && turnObj.mode === 3) {
@@ -539,7 +535,6 @@ const renderGame = function() {
         }
     } else if (turnObj.winner === 2) {
         turnArea.textContent = "Player 2 wins";
-        html.style.backgroundColor = "#aa8484";
         board.style.backgroundColor = "#742525";
 
         if (featureToggle.debug.mlg && turnObj.mode === 2) {
@@ -548,7 +543,6 @@ const renderGame = function() {
         }
     } else if (turnObj.winner === -1) {
         turnArea.textContent = "Tied game";
-        html.style.backgroundColor = "#a9f5a9";
         board.style.backgroundColor = "#04b404";
     }
 
