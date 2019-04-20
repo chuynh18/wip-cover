@@ -468,7 +468,7 @@ const renderGame = function() {
 
         if (turnObj.moveList.length > 0) {
             setTimeout(function() {
-                playSound("assets/snd/drop.webm");
+                playSound("assets/other/drop.webm");
             }, 250);
         }
 
@@ -499,7 +499,7 @@ const renderGame = function() {
         board.style.backgroundColor = "#742525";
 
         setTimeout(function() {
-            playSound("assets/snd/drop.webm");
+            playSound("assets/other/drop.webm");
         }, 250);
 
         if (!turnObj.winner) {
@@ -528,19 +528,9 @@ const renderGame = function() {
     if (turnObj.winner === 1) {
         turnArea.textContent = "Player 1 wins";
         board.style.backgroundColor = "#2196F3";
-
-        if (featureToggle.debug.mlg && turnObj.mode === 3) {
-            mlg();
-            playSound("assets/snd/mlg.webm");
-        }
     } else if (turnObj.winner === 2) {
         turnArea.textContent = "Player 2 wins";
         board.style.backgroundColor = "#742525";
-
-        if (featureToggle.debug.mlg && turnObj.mode === 2) {
-            mlg();
-            playSound("assets/snd/mlg.webm");
-        }
     } else if (turnObj.winner === -1) {
         turnArea.textContent = "Tied game";
         board.style.backgroundColor = "#04b404";
