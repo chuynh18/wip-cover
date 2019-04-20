@@ -14,7 +14,6 @@ img::selection {
    background: none;
  }
 
-/*content divs should be width 70%, but their containers should be 100% */
 header, section {
    width: 90%;
    margin: auto;
@@ -28,6 +27,7 @@ hr {
 @media only screen and (min-width: 1024px) {
    header, section {
       width: 60%;
+      max-width: 1024px;
    }
 }
 

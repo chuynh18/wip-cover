@@ -41,6 +41,7 @@
 @media only screen and (min-width: 1024px) {
    .game-cell {
       height: 7vw;
+      max-height: 116px;
    }
    
    .circle-cell {
