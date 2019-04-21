@@ -32,6 +32,7 @@
 }
 
 .circle-cell {
+   margin: auto;
    border-radius: 8vw;
    height: 95%;
    width: 95%;
