@@ -3,7 +3,7 @@
 // camera configuration object
 const cameraConfig = {
    // current number of photos to display in the camera
-   numPhotos: 24,
+   numPhotos: 25,
    currentPhoto: -1,
    sound: new Audio("assets/other/shutter.webm"),
    currentlyAnimating: false,
@@ -18,11 +18,13 @@ function positionThumbnailInCamera() {
 
    // so.  much.  pixel.  pushing.
    if (window.innerWidth >= 1024) {
-      thumbnailDiv.style.left =
-      // 0.6 comes from the width of the containing div
-      // everything else is empirically measured
-      (0.6 * window.innerWidth / 2 - 203 > 121) ?
-      `${0.6 * window.innerWidth / 2 - 203}px` : "121px";
+      if (window.innerWidth > 1719) {
+         thumbnailDiv.style.left = "313px";
+      } else if (0.6 * window.innerWidth / 2 - 203 > 121) {
+         thumbnailDiv.style.left = `${0.6 * window.innerWidth / 2 - 203}px`;
+      } else {
+         thumbnailDiv.style.left = "121px";
+      }
    } else {
       thumbnailDiv.style.left =
       // 0.9 comes from the width of the containing div
